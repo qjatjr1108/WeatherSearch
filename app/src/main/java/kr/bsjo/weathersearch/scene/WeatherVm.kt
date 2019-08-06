@@ -1,6 +1,7 @@
 package kr.bsjo.weathersearch.scene
 
 import android.util.Log
+import androidx.databinding.ObservableBoolean
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -20,6 +21,8 @@ class WeatherVm {
 
     val adapter = BaseRecyclerViewAdapter<WeatherItemVm, ItemWeatherBinding>(R.layout.item_weather, BR.vm)
 
+    val progressVisibility = ObservableBoolean(true)
+
     private val disposable = CompositeDisposable()
 
     fun init() {
@@ -28,8 +31,7 @@ class WeatherVm {
             .reduce { t1: List<ModelWeather>, t2: List<ModelWeather> -> t1 + t2 }
             .networkThread()
             .subscribe({ result ->
-                Log.d(tag, GsonHelper.toJson(result))
-
+                progressVisibility.set(false)
                 putData(result)
             }, { e ->
                 Log.e(tag, e.toString())

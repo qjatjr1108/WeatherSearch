@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <import type="android.view.View"/>
         <variable name="vm" type="kr.bsjo.weathersearch.scene.WeatherVm"/>
     </data>
 
@@ -22,8 +23,8 @@
                 android:textStyle="bold"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:paddingTop="20dp"
-                />
+                android:paddingTop="20dp"/>
+
         <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -31,7 +32,8 @@
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:visibility="@{vm.progressVisibility ? View.GONE : View.VISIBLE}">
 
                 <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
@@ -43,10 +45,10 @@
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:visibility="gone"/>
+                    android:visibility="@{vm.progressVisibility ? View.VISIBLE : View.GONE}"/>
         </FrameLayout>
 
 
