@@ -10,9 +10,9 @@ import retrofit2.http.Query
 
 interface ApiWeather {
 
-    @GET("search")
+    @GET("/api/location/search")
     fun locationSearch(@Query("query") word: String): Single<List<ModelLocationSearch.Response>>
 
-    @GET("{woeid}")
+    @GET("/api/location/{woeid}")
     fun location(@Path("woeid") woeid: String): Single<ModelLocation.Response>
 }

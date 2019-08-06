@@ -20,4 +20,9 @@ class WeatherActivity : AppCompatActivity() {
 
         viewModel.init()
     }
+
+    override fun onDestroy() {
+        viewModel.clearDisposable()
+        super.onDestroy()
+    }
 }

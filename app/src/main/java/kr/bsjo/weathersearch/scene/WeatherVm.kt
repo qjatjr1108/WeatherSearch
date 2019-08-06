@@ -2,11 +2,14 @@ package kr.bsjo.weathersearch.scene
 
 import android.util.Log
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import kr.bsjo.weathersearch.BR
+import kr.bsjo.weathersearch.R
 import kr.bsjo.weathersearch.api.ApiService
 import kr.bsjo.weathersearch.api.gson.GsonHelper
+import kr.bsjo.weathersearch.databinding.BaseRecyclerViewAdapter
+import kr.bsjo.weathersearch.databinding.ItemWeatherBinding
 import kr.bsjo.weathersearch.model.ModelLocationSearch
 import kr.bsjo.weathersearch.model.ModelWeather
 import kr.bsjo.weathersearch.util.networkThread
@@ -15,26 +18,19 @@ class WeatherVm {
 
     private val tag get() = this::class.java.canonicalName
 
-    val disposable = CompositeDisposable()
+    val adapter = BaseRecyclerViewAdapter<WeatherItemVm, ItemWeatherBinding>(R.layout.item_weather, BR.vm)
+
+    private val disposable = CompositeDisposable()
 
     fun init() {
         locationSearch()
-            .flatMapSingle { location ->
-                ApiService.weather().location(location.woeid.toString())
-                    .map {
-                        listOf(
-                            ModelWeather(
-                                consolidated_weather = it.consolidated_weather.take(2),
-                                title = location.title
-                            )
-                        )
-                    }
-
-            }
-            .scan { t1: List<ModelWeather>, t2: List<ModelWeather> -> t1 + t2 }
+            .getWeatherList()
+            .reduce { t1: List<ModelWeather>, t2: List<ModelWeather> -> t1 + t2 }
             .networkThread()
             .subscribe({ result ->
                 Log.d(tag, GsonHelper.toJson(result))
+
+                putData(result)
             }, { e ->
                 Log.e(tag, e.toString())
             })
@@ -46,5 +42,23 @@ class WeatherVm {
             .locationSearch("se")
             .toObservable()
             .flatMapIterable { it }
+    }
+
+    private fun Observable<ModelLocationSearch.Response>.getWeatherList(): Observable<List<ModelWeather>> {
+        return this.flatMapSingle { location ->
+            ApiService.weather().location(location.woeid.toString())
+                .map { ModelWeather(weathers = it.consolidated_weather.take(2), title = location.title).toList() }
+        }
+    }
+
+    private fun putData(result: List<ModelWeather>) {
+        adapter.clear()
+        adapter.add(WeatherItemVm.createHeader())
+        result.forEach { adapter.add(WeatherItemVm(it)) }
+    }
+
+
+    fun clearDisposable() {
+        disposable.clear()
     }
 }

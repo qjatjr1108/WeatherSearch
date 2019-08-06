@@ -17,10 +17,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title"
-                android:textSize="20sp"
+                android:textSize="30dp"
                 android:textColor="@color/balck"
                 android:textStyle="bold"
-                android:padding="10dp"/>
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="20dp"
+                />
         <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -34,6 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:listitem="@layout/item_weather"
+                        android:adapter="@{vm.adapter}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

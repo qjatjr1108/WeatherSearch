@@ -7,4 +7,5 @@
     <color name="balck">#000000</color>
     <color name="silver">#efefef</color>
     <color name="silver_deep">#bbbbbb</color>
+    <color name="light_black">#555555</color>
 </resources>
