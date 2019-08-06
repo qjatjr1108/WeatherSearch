@@ -33,7 +33,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="10dp"
-                    android:visibility="@{vm.progressVisibility ? View.GONE : View.VISIBLE}">
+                    android:visibility="@{vm.progressVisibility ? View.GONE : View.VISIBLE}"
+                    app:refreshing="@{vm.isRefreshing}"
+                    app:onRefreshListener="@{vm.adapterRefreshListener}">
 
                 <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"

@@ -2,13 +2,13 @@ package kr.bsjo.weathersearch.scene
 
 import android.util.Log
 import androidx.databinding.ObservableBoolean
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kr.bsjo.weathersearch.BR
 import kr.bsjo.weathersearch.R
 import kr.bsjo.weathersearch.api.ApiService
-import kr.bsjo.weathersearch.api.gson.GsonHelper
 import kr.bsjo.weathersearch.databinding.BaseRecyclerViewAdapter
 import kr.bsjo.weathersearch.databinding.ItemWeatherBinding
 import kr.bsjo.weathersearch.model.ModelLocationSearch
@@ -22,8 +22,15 @@ class WeatherVm {
     val adapter = BaseRecyclerViewAdapter<WeatherItemVm, ItemWeatherBinding>(R.layout.item_weather, BR.vm)
 
     val progressVisibility = ObservableBoolean(true)
+    val isRefreshing = ObservableBoolean(false)
 
     private val disposable = CompositeDisposable()
+
+    val adapterRefreshListener = SwipeRefreshLayout.OnRefreshListener {
+        adapter.clear()
+        isRefreshing.set(true)
+        init()
+    }
 
     fun init() {
         locationSearch()
@@ -32,6 +39,7 @@ class WeatherVm {
             .networkThread()
             .subscribe({ result ->
                 progressVisibility.set(false)
+                isRefreshing.set(false)
                 putData(result)
             }, { e ->
                 Log.e(tag, e.toString())
