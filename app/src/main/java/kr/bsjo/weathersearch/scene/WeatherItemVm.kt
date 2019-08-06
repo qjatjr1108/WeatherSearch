@@ -17,8 +17,11 @@ class WeatherItemVm(val model: ModelWeather, val isHeader: Boolean = false) {
     val todayWeatherStateName get() = today.weather_state_name
     val tomorrowWeatherStateName get() = tomorrow.weather_state_name
 
-    val todayTempWithHumidity get() = "${today.max_temp.toInt()} ${today.humidity}"
-    val tomorrowTempWithHumidity get() = "${tomorrow.max_temp.toInt()} ${tomorrow.humidity}"
+    val todayTemp get() = "${today.max_temp.toInt()}°C"
+    val tomorrowTemp get() = "${tomorrow.max_temp.toInt()}°C"
+
+    val todayHumidity get() = "${today.humidity}%"
+    val tomorrowHumidity get() = "${tomorrow.humidity}%"
 
     private fun String.getImageUrl() = "${ApiService.baseUrl}/static/img/weather/png/64/$this.png"
 

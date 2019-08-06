@@ -6,8 +6,8 @@
     <data>
         <variable name="imageUrl" type="String"/>
         <variable name="weatherStateName" type="String"/>
-        <variable name="tempWithHumidity" type="String"/>
-
+        <variable name="temp" type="String"/>
+        <variable name="humidity" type="String"/>
     </data>
 
     <LinearLayout
@@ -21,10 +21,9 @@
         <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-
                 tools:src="@drawable/ic_launcher_background"
-                bind:loadUrl="@{imageUrl}"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                bind:loadUrl="@{imageUrl}"/>
 
         <LinearLayout
                 android:layout_width="wrap_content"
@@ -40,19 +39,36 @@
                     android:gravity="bottom|start"
                     android:layout_weight="1"
                     android:textColor="@color/light_black"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:text="@{weatherStateName}"/>
 
-            <TextView
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                    android:layout_width="100dp"
                     android:layout_height="0dp"
-                    tools:text="-7'C 68%"
-                    android:gravity="top|start"
-                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:textColor="@color/light_black"
-                    android:textSize="11dp"
-                    android:text="@{tempWithHumidity}"/>
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        tools:text="-7'C"
+                        android:gravity="top|start"
+                        android:textColor="@color/dark_red"
+                        android:textSize="11dp"
+                        android:text="@{temp}"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="68%"
+                        android:gravity="top|start"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@color/balck"
+                        android:textSize="11dp"
+                        android:text="@{humidity}"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 

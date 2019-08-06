@@ -81,7 +81,8 @@
                     android:gravity="center"
                     app:imageUrl="@{vm.todayImageUrl}"
                     app:weatherStateName="@{vm.todayWeatherStateName}"
-                    app:tempWithHumidity="@{vm.todayTempWithHumidity}"/>
+                    app:temp="@{vm.todayTemp}"
+                    app:humidity="@{vm.todayHumidity}"/>
 
             <include
                     layout="@layout/item_detail"
@@ -91,7 +92,8 @@
                     android:gravity="center"
                     app:imageUrl="@{vm.tomorrowImageUrl}"
                     app:weatherStateName="@{vm.tomorrowWeatherStateName}"
-                    app:tempWithHumidity="@{vm.tomorrowTempWithHumidity}"/>
+                    app:temp="@{vm.tomorrowTemp}"
+                    app:humidity="@{vm.tomorrowHumidity}"/>
 
         </LinearLayout>
 

@@ -8,4 +8,6 @@
     <color name="silver">#efefef</color>
     <color name="silver_deep">#bbbbbb</color>
     <color name="light_black">#555555</color>
+    <color name="dark_red">#8B0000</color>
+
 </resources>
