@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="vm" type="kr.bsjo.weathersearch.scene.WeatherVm"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_header"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@color/balck"
+                    android:text="@string/tab_text_local"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/balck"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="23.3dp"
+                    android:paddingEnd="23.3dp"
+                    android:text="@string/tab_text_today"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/balck"
+                    android:padding="10dp"
+                    android:text="@string/tab_text_tomorrow"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_content"
+                    android:gravity="center"
+                    android:textColor="@color/balck"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="40dp"
+                    android:paddingBottom="40dp"
+                    tools:text="Seoul"/>
+
+            <include
+                    layout="@layout/item_detail"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            <include
+                    layout="@layout/item_detail"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>
