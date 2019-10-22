@@ -1,5 +1,10 @@
-# WeatherSearch
+# WeatherSearch  
+# Use
+Gson,Glide,Retrofit,RxJava(RxKotlin,RxAndroid),MVVM(Databinding)
+<br/>
+<br/>
 
+# Sample Video
 <img src="https://user-images.githubusercontent.com/39984656/62519003-b63a6a00-b865-11e9-97ac-89c80e9ce5db.gif" width="500" height="800" />
 
 
