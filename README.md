@@ -1,6 +1,6 @@
 # WeatherSearch  
 # Use
-Gson,Glide,Retrofit,RxJava(RxKotlin,RxAndroid),MVVM(Databinding)
+**Gson,Glide,Retrofit,RxJava(RxKotlin,RxAndroid),MVVM(Databinding)**
 <br/>
 <br/>
 
